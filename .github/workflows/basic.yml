@@ -34,6 +34,7 @@ jobs:
       id: check_artifact
       if: ${{steps.check_page.outputs.page_modified != false }}
       uses: actions/download-artifact@v4
+      continue-on-error: true
       with: 
         name: ${{ matrix.page-name }}
         run-id: ${{ github.event.inputs.source_run_id }}
