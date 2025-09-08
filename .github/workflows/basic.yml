@@ -35,6 +35,7 @@ jobs:
         git show --dirstat HEAD | grep -q github # ${{ matrix.page-path }}
         echo 'check ${{ matrix.page-path }}:' $?
         echo 'page_modified'=$? >> $GITHUB_OUTPUT
+      continue-on-error: true
 
     - name: Check artifact if page not modified
       id: check_artifact
