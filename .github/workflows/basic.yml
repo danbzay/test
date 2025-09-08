@@ -19,6 +19,7 @@ jobs:
       id: check_page    
       continue-on-error: true
       run: |  
+        echo ${{ github.event.inputs.source_run_id }}
         regex_page_path=$(echo "${{ matrix.page-path }}" | sed 's/[.\/]/\\&/g')
         echo $regex_page_path 
         echo ${{ matrix.page-name }} | grep $regex_page_path || 
