@@ -7,12 +7,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        include:
+          - page-path: '9-JavaScript-browser/2-DOM/hit-game/'
+            page-name: 'hit-game'
 
     steps:              
     - name: Check if page modified
       id: page    
       continue-on-error: true
       run: |  
+        regex_page_path = $(echo "${{ matrix.page-path }}" | sed 's/[.\[\]*+?{}()|^$]/\\&/g')
+        echo $regex_page_path 
         echo 'test' | grep tet || 
         echo false
         echo 'continue': $?
