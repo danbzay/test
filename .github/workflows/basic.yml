@@ -22,8 +22,10 @@ jobs:
         regex_page_path=$(echo "${{ matrix.page-path }}" | sed 's/[.\/]/\\&/g')
         echo $regex_page_path 
         echo ${{ matrix.page-path }} | grep $regex_page_path || 
-        echo false
-        echo 'continue': $?
+        echo 'page_modified=false' >> $GITHUB_OUTPUT
+
+    - name: check variable
+      run: echo ${{ steps.check_page.outputs.page_modified }}
 
 
 
