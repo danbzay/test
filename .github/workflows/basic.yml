@@ -8,8 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-  steps:
-              
+    steps:              
     - name: Check if page modified
       id: page    
       continue-on-error: true
