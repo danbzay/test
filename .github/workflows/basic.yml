@@ -15,10 +15,11 @@ jobs:
             page-name: 'hit-game'
 
     steps:              
-    - name: Check if page modified
+    - name: Add test artifact an test regex
       id: check_page    
       continue-on-error: true
       run: |  
+        mkdir  ${{ matrix.page-path }}dist
         echo 'test artifact' > ${{ matrix.page-path }}dist/test-artifact
         echo ${{ github.event.inputs.source_run_id }}
         regex_page_path=$(echo "${{ matrix.page-path }}" | sed 's/[.\/]/\\&/g')
