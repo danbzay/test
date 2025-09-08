@@ -18,9 +18,9 @@ jobs:
     - name: Add test artifact an test regex
       id: check_page    
       continue-on-error: true
-      run: |  
-        mkdir  ${{ matrix.page-path }}dist
-        echo 'test artifact' > ${{ matrix.page-path }}dist/test-artifact
+      run: |
+        mkdir dist
+        echo 'test artifact' > dist/test-artifact
         echo ${{ github.event.inputs.source_run_id }}
         regex_page_path=$(echo "${{ matrix.page-path }}" | sed 's/[.\/]/\\&/g')
         echo $regex_page_path 
@@ -41,7 +41,7 @@ jobs:
     - name: Upload Page Artifact
       uses: actions/upload-artifact@v4
       with:
-        path: ${{ matrix.page-path }}dist
+        path: dist
         name: ${{ matrix.page-name }}
         retention-days: 30
         overwrite: true
