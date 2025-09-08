@@ -1,4 +1,4 @@
-ck_name: Multiple Homeworks Publishing
+name: Multiple Homeworks Publishing
 
 on:
   push:
