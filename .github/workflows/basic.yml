@@ -13,7 +13,8 @@ jobs:
       id: page    
       continue-on-error: true
       run: |  
-        echo 'test' | grep tet || echo false
+        echo 'test' | grep tet || 
+        echo false
         echo 'continue': $?
 
 
