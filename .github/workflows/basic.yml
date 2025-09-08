@@ -21,7 +21,7 @@ jobs:
       run: |  
         regex_page_path=$(echo "${{ matrix.page-path }}" | sed 's/[.\/]/\\&/g')
         echo $regex_page_path 
-        echo 'test' | grep tet || 
+        echo ${{ matrix.page-path }} | grep $regex_page_path || 
         echo false
         echo 'continue': $?
 
