@@ -38,7 +38,6 @@ jobs:
       id: deployment
       with:
         path: dist
-        name: ${{ matrix.page-name }} 
         
   deploy:
     needs: build
@@ -57,9 +56,7 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
       id: deployment
-      with:
-        artifact_name: ${{ matrix.page-name }}
-
+      
     - name: download published
       run: | 
         wget -r -np ${{ steps.deployment.outputs.page_url }}
