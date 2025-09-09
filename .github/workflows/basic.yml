@@ -31,6 +31,13 @@ jobs:
       run: |
         echo 'steps.check_page.outputs.page_modified:' ${{ steps.check_page.outputs.page_modified }}
         echo 'github.event.inputs.source_run_id:' ${{ github.event.inputs.source_run_id }}
+
+    steps:
+    - name: Upload Page Artifact
+      uses: actions/upload-pages-artifact@v4
+      with:
+        path: dist
+        name: ${{ matrix.page-name }} 
         
   deploy:
     needs: build
@@ -44,12 +51,7 @@ jobs:
 
     runs-on: ubuntu-latest
     
-    steps:
-    - name: Upload Page Artifact
-      uses: actions/upload-pages-artifact@v4
-      with:
-        path: dist
-        name: ${{ matrix.page-name }}        
+      
       
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
