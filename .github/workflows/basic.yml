@@ -32,7 +32,7 @@ jobs:
         echo 'steps.check_page.outputs.page_modified:' ${{ steps.check_page.outputs.page_modified }}
         echo 'github.event.inputs.source_run_id:' ${{ github.event.inputs.source_run_id }}
         
-deploy:
+  deploy:
     needs: build
     permissions:
       pages: write
@@ -58,5 +58,7 @@ deploy:
         artifact_name: ${{ matrix.page-name }}
 
     - name: download published
-      run: wget -r -np ${{ steps.deployment.outputs.page_url }}
+      run: | 
+        wget -r -np ${{ steps.deployment.outputs.page_url }}
+        ls
 
