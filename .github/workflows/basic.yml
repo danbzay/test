@@ -32,21 +32,18 @@ jobs:
         echo 'steps.check_page.outputs.page_modified:' ${{ steps.check_page.outputs.page_modified }}
         echo 'github.event.inputs.source_run_id:' ${{ github.event.inputs.source_run_id }}
 
-    - name: Check artifact if page not modified
-      id: check_artifact
-      if: ${{steps.check_page.outputs.page_modified != false }}
-      uses: actions/download-artifact@v4
-      continue-on-error: true
-      with: 
-        name: ${{ matrix.page-name }}
-        run-id: ${{ github.event.inputs.source_run_id }}
-        
     - name: Upload Page Artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-pages-artifact@v4
       with:
         path: dist
         name: ${{ matrix.page-name }}
-        retention-days: 30
-        overwrite: true
 
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v4
+      id: deployment
+      with:
+        artifact_name: ${{ matrix.page-name }}
+
+    - name: download published
+      # run: wget -r -np "$DOWNLOAD_URL"
 
