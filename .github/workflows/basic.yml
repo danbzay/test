@@ -20,7 +20,7 @@ jobs:
       continue-on-error: true
       run: |
         mkdir dist
-        echo 'test artifact' > dist/test-artifact
+        echo '<html><body>test artifact</body></html>' > dist/index.html
         echo ${{ github.event.inputs.source_run_id }}
         regex_page_path=$(echo "${{ matrix.page-path }}" | sed 's/[.\/]/\\&/g')
         echo $regex_page_path 
