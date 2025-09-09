@@ -44,6 +44,6 @@ jobs:
       with:
         artifact_name: ${{ matrix.page-name }}
 
-    - name: download published
+    #- name: download published
       # run: wget -r -np "$DOWNLOAD_URL"
 
