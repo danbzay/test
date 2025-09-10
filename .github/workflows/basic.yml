@@ -3,6 +3,10 @@ name: Multiple Homeworks Publishing
 on:
   push:
     branches: [ "main" ]
+
+    
+env:
+  HOME_URL: 'https://danbzay.github.io/test'
       
 jobs:
   build:
@@ -19,13 +23,12 @@ jobs:
       id: check_page    
       continue-on-error: true
       run: |
-        mkdir dist
-        echo '<html><body>test artifact</body></html>' > dist/index.html
-        echo ${{ github.event.inputs.source_run_id }}
         regex_page_path=$(echo "${{ matrix.page-path }}" | sed 's/[.\/]/\\&/g')
-        echo $regex_page_path 
-        echo ${{ matrix.page-name }} | grep $regex_page_path || 
-        echo 'page_modified=false' >> $GITHUB_OUTPUT
+        echo 'regex_page_path='$regex_page_path
+        echo $HOME_URL/${{ matrix.page-name }}
+        git show --dirstat --name-only HEAD | grep -e $regex_page_path -e workflows || 
+          ((echo 'grep status='$?; wget -r -np -P ${{ matrix.page-path }}dist $HOME_URL/${{ matrix.page-name }}) &&
+          (echo 'wget status='$?; echo 'saved=true' >> $GITHUB_OUTPUT))
 
     - name: check variables
       run: |
