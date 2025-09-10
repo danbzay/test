@@ -27,7 +27,7 @@ jobs:
         wget -r --no-parent --no-host-directories --cut-dirs=2 -P ./${{ matrix.page-name }}/dist $HOME_URL/${{ matrix.page-name }}
         mv ./${{ matrix.page-name }}/dist/${{ matrix.page-name }} ./${{ matrix.page-name }}/dist/index.html
         ls -R
-        echo 'saved=true' >> $GITHUB_OUTPUT
+        echo 'saved=1' >> $GITHUB_OUTPUT
 
     - name: check variables
       run: |
@@ -36,7 +36,7 @@ jobs:
 
 
     - name: Upload Page Artifact
-      if: steps.old_page.outputs.saved == true
+      if: steps.old_page.outputs.saved == 1
       uses: actions/upload-pages-artifact@v4
       id: deployment
       with:
