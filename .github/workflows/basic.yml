@@ -23,12 +23,11 @@ jobs:
       id: check_page    
       continue-on-error: true
       run: |
-        regex_page_path=$(echo "${{ matrix.page-path }}" | sed 's/[.\/]/\\&/g')
-        echo 'regex_page_path='$regex_page_path
-        echo $HOME_URL/${{ matrix.page-name }}
-        git show --dirstat --name-only HEAD | grep -e $regex_page_path || 
-          ((echo 'grep status='$?; wget -r -np -P ${{ matrix.page-name }}/dist $HOME_URL/${{ matrix.page-name }}) &&
-          (echo 'wget status='$?; echo 'saved=true' >> $GITHUB_OUTPUT))
+        echo $HOME_URL/${{ matrix.page-name }} 
+        wget -r -np -P ${{ matrix.page-name }}/dist $HOME_URL/${{ matrix.page-name }}
+        ls -R
+
+        
 
     - name: check variables
       run: |
