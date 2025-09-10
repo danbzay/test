@@ -19,8 +19,8 @@ jobs:
             page-name: 'hit-game'
 
     steps:              
-    - name: Add test artifact an test regex
-      id: check_page    
+    - name: wget
+      id: old_page    
       continue-on-error: true
       run: |
         echo $HOME_URL/${{ matrix.page-name }} 
