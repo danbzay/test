@@ -25,6 +25,7 @@ jobs:
       run: |
         echo $HOME_URL/${{ matrix.page-name }} 
         wget -r --no-parent --no-host-directories --cut-dirs=2 -P ./${{ matrix.page-name }}/dist $HOME_URL/${{ matrix.page-name }}
+        mv ./${{ matrix.page-name }}/dist/${{ matrix.page-name }} ./${{ matrix.page-name }}/dist/index.html
         ls -R
 
         
