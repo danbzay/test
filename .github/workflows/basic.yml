@@ -18,14 +18,14 @@ jobs:
       - name: Define matrix
         id: set_tasks
         run : |
-          echo "tasks<<EOF" >> "$GITHUB_OUTPUT"
-          cat tasks.json >> "$GITHUB_OUTPUT"
-          echo "EOF" >> "$GITHUB_OUTPUT"
-          #tasks="${tasks//'%'/'%25'}"
-          #tasks="${tasks//$'\n'/''}"
-          #tasks="${tasks//$'\r'/'%0D'}"
-          #echo "tasks=$tasks"
-          #echo "tasks=$tasks" >> "$GITHUB_OUTPUT"
+          #echo "tasks<<EOF" >> "$GITHUB_ENV"
+          #cat tasks.json >> "$GITHUB_ENV"
+          #echo "EOF" >> "$GITHUB_ENV"
+          tasks="${tasks//'%'/'%25'}"
+          tasks="${tasks//$'\n'/'%0A'}"
+          tasks="${tasks//$'\r'/'%0D'}"
+          echo "tasks=$tasks"
+          echo "tasks=$tasks" >> "$GITHUB_OUTPUT"
       - run: echo "${{fromJson(steps.set_tasks.output.tasks)}}"
 
   test:
