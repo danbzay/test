@@ -1,0 +1,8 @@
+          - page-path: '2-DOM/hit-game/'
+            page-name: 'hit-game'  
+            package-manager: 'npm'
+            rebuild: true
+          - page-path: '2-DOM/loading-sorting/'
+            page-name: 'loading-sorting'
+            package-manager: 'npm'
+            rebuild: true
