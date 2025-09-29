@@ -24,7 +24,7 @@ jobs:
           tasks="${tasks//$'\r'/'%0D'}"
           echo "tasks=$tasks" >> "$GITHUB_OUTPUT"
       - run: |
-          echo "${{fromJson(steps.set_var.outputs.packageJson).version}}"
+          echo "${{fromJson(steps.set_tasks.outputs.tasks)}}"
 
   test:
     runs-on: ubuntu-latest
