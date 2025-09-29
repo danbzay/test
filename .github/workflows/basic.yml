@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      tasks: ${{ steps.tasks.outputs.tasks }}
+      tasks: ${{ steps.set_tasks.outputs.tasks }}
 
     steps:
       - uses: actions/checkout@v4
@@ -22,6 +22,7 @@ jobs:
           tasks="${tasks//'%'/'%25'}"
           tasks="${tasks//$'\n'/'%0A'}"
           tasks="${tasks//$'\r'/'%0D'}"
+          echo "tasks=$tasks"
           echo "tasks=$tasks" >> "$GITHUB_OUTPUT"
       - run: |
           echo "${{fromJson(steps.set_tasks.outputs.tasks)}}"
