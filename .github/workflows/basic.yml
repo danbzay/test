@@ -19,9 +19,9 @@ jobs:
         id: set_tasks
         run : |
           tasks=`cat tasks.json`
-          tasks="${tasks//'%'/'%25'}"
-          tasks="${tasks//$'\n'/'%0A'}"
-          tasks="${tasks//$'\r'/'%0D'}"
+          #tasks="${tasks//'%'/'%25'}"
+          #tasks="${tasks//$'\n'/'%0A'}"
+          #tasks="${tasks//$'\r'/'%0D'}"
           echo "tasks=$tasks"
           echo "tasks=$tasks" >> "$GITHUB_OUTPUT"
       - run: |
