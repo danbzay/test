@@ -22,9 +22,9 @@ jobs:
           #cat tasks.json >> "$GITHUB_ENV"
           #echo "EOF" >> "$GITHUB_ENV"
           tasks=`cat tasks.json`
-          tasks="${tasks//'%'/'%25'}"
-          tasks="${tasks//$'\n'/'%0A'}"
-          tasks="${tasks//$'\r'/'%0D'}"
+          tasks="${tasks//'%'/''}"
+          tasks="${tasks//$'\n'/''}"
+          tasks="${tasks//$'\r'/''}"
           echo "tasks=$tasks"
           echo "tasks=$tasks" >> "$GITHUB_OUTPUT"
       - run: echo "${{fromJson(steps.set_tasks.outputs.tasks)}}"
