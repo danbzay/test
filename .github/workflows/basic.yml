@@ -25,8 +25,8 @@ jobs:
           tasks="${tasks//'%'/''}"
           tasks="${tasks//$'\n'/''}"
           tasks="${tasks//$'\r'/''}"
-          echo "tasks=$tasks"
-          echo "tasks=$tasks" >> "$GITHUB_OUTPUT"
+          echo "tasks=\'$tasks\'"
+          echo "tasks=\'$tasks\'" >> "$GITHUB_OUTPUT"
       - run: echo "${{fromJson(steps.set_tasks.outputs.tasks)}}"
 
   test:
