@@ -30,15 +30,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: prepare
 
-   strategy:
+    strategy:
       matrix:
-        tasks: ${{ fromJSON(needs.prepare.outputs.tasks) }}
+        task: ${{ fromJSON(needs.prepare.outputs.tasks) }}
 
     steps:
-      - run: echo "${{fromJson(needs.prepare.outputs.tasks)}}"
-
       - name: show matrix
-        run: echo ${{ matrix }}
+        run: echo ${{ matrix.task }}
         
 
 
