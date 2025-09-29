@@ -18,25 +18,26 @@ jobs:
       - name: Define matrix
         id: set_tasks
         run : |
-          echo "tasks<<EOF" >> $GITHUB_ENV
-          cat tasks.json >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          echo "tasks<<EOF" >> "$GITHUB_OUTPUT"
+          cat tasks.json >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
           #tasks="${tasks//'%'/'%25'}"
           #tasks="${tasks//$'\n'/''}"
           #tasks="${tasks//$'\r'/'%0D'}"
           #echo "tasks=$tasks"
           #echo "tasks=$tasks" >> "$GITHUB_OUTPUT"
-      - run: |
-          echo "${{fromJson(env.tasks)}}"
+      - run: echo "${{fromJson(steps.set_tasks.output.tasks)}}"
 
   test:
     runs-on: ubuntu-latest
     needs: prepare
     strategy:
       matrix:
-        tasks: ${{ fromJSON(needs.prepare.outputs.tasks) }}
+        tasks: ${{ fromJSON(env.tasks) }}
 
     steps:
+      - run: echo "${{fromJson(steps.set_tasks.output.tasks)}}"
+
       - name: show matrix
         run: echo ${{ matrix }}
         
