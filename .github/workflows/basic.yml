@@ -16,8 +16,15 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Define matrix
-        id: tasks
-        run : (printf %s "tasks="; cat tasks.json) >> "$GITHUB_OUTPUT"
+        id: set_tasks
+        run : |
+          tasks=`cat tasks.json`
+          tasks="${tasks//'%'/'%25'}"
+          tasks="${tasks//$'\n'/'%0A'}"
+          tasks="${tasks//$'\r'/'%0D'}"
+          echo "tasks=$tasks" >> "$GITHUB_OUTPUT"
+      - run: |
+          echo "${{fromJson(steps.set_var.outputs.packageJson).version}}"
 
   test:
     runs-on: ubuntu-latest
