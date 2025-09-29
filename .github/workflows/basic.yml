@@ -17,14 +17,14 @@ jobs:
 
       - name: Define matrix
         id: tasks
-        run : (printf %s "tasks="; cat tasks) >> "$GITHUB_OUTPUT"
+        run : (printf %s "tasks="; cat tasks.json) >> "$GITHUB_OUTPUT"
 
   test:
     runs-on: ubuntu-latest
     needs: prepare
     strategy:
       matrix:
-        tasks: ${{ needs.prepare.outputs.tasks }}
+        tasks: ${{ fromJSON(needs.prepare.outputs.tasks) }}
 
     steps:
       - name: show matrix
