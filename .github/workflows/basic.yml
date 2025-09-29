@@ -13,6 +13,9 @@ jobs:
       tasks: ${{ steps.tasks.outputs.tasks }}
 
     steps:
+    - uses: actions/checkout@v4
+
+    steps:
       - name: Define matrix
         id: tasks
         run : (printf %s "tasks="; cat tasks) >> "$GITHUB_OUTPUT"
