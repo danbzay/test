@@ -27,7 +27,7 @@ jobs:
       matrix: ${{ fromJson(needs.configure.outputs.matrix) }}
     steps:
       - name: Run job for matrix item
-        run: echo "Running for target: ${{ matrix.target }}"
+        run: echo "Running for target ${{ matrix.target }}"
 
         
 
