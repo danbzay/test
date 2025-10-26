@@ -42,7 +42,9 @@ jobs:
 
     steps:
       - name: Run job for matrix item
-        run: echo "Running for page ${{ matrix }}"
+        run: |
+          echo "Running for page ${{ matrix }}";
+          echo 'matrix: ${{ toJson(matrix) }}';
 
   deploy:
     runs-on: ubuntu-latest
