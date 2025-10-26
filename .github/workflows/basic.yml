@@ -37,7 +37,7 @@ jobs:
     needs: configure
     strategy:
       matrix: 
-        node-version: 22.x
+        node-version: [22.x]
         include: ${{ fromJson(needs.configure.outputs.matrix) }}
 
     steps:
