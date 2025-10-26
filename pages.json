@@ -11,3 +11,42 @@
     "rebuild": true
   }
 ]
+[
+  {
+    "path": "2-DOM/hit-game/",
+    "name": "hit-game",
+    "package-manager": "npm",
+    "rebuild": true
+  },{
+    "path": "2-DOM/loading-sorting/",
+    "name": "loading-sorting",
+    "package-manager": "npm",
+    "rebuild": true
+  }
+]
+[
+  {
+    "page-path": "2-DOM/hit-game/",
+    "page-name": "hit-game",
+    "manager": "npm",
+    "rebuild": true
+  },{
+    "page-path": "2-DOM/loading-sorting/",
+    "page-name": "loading-sorting",
+    "manager": "npm",
+    "rebuild": true
+  }
+]
+[
+  {
+    "path": "2-DOM/hit-game/",
+    "name": "hit-game",
+    "manager": "npm",
+    "rebuild": true
+  },{
+    "path": "2-DOM/loading-sorting/",
+    "name": "loading-sorting",
+    "manager": "npm",
+    "rebuild": true
+  }
+]
