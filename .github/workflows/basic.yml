@@ -24,6 +24,7 @@ jobs:
           cat index | \
           sed -e '/\$/! s/^/echo \"/' -e '/\$/! s/$/\"/' -e '/\$/ s/\$//' | \
           bash > publish/index.html;
+          cat publish/index.html;
 
       - name: Upload index.html
         id: deployment
