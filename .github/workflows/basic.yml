@@ -37,9 +37,9 @@ jobs:
     needs: configure
     strategy:
       matrix: 
+        page: ${{ fromJson(needs.configure.outputs.matrix) }}
         include:
           - node-version: 22.x
-          - page: ${{ fromJson(needs.configure.outputs.matrix) }}
 
     steps:
       - name: Run job for matrix item
