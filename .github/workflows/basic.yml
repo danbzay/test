@@ -17,8 +17,15 @@ jobs:
       - name: Set matrix data from file
         id: set-matrix
         run: |
-          # Assuming config.json contains a JSON array, e.g., [{"target": "dev"}, {"target": "qa"}]
-          echo "matrix=$(jq -c . < ./config.json)" >> $GITHUB_OUTPUT
+          echo "matrix=$(jq -c . < ./pages.json)" >> $GITHUB_OUTPUT
+
+      - name: Create index.html
+        run: | 
+          cat index | \
+          sed -e '/\$/! s/^/echo \"/' -e '/\$/! s/$/\"/' -e '/\$/ s/\$//' | \
+          bash >> index.html;
+          
+        
 
   run-matrix-jobs:
     runs-on: ubuntu-latest

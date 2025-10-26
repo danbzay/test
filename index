@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>JS in Browser HomeWorks</title>
+  </head>
+  <body>
+    <ul>
+$cat pages.json | jq '.[] | "<li><a href=" + .name + ">" + .path + "</li>"'
+</html>
