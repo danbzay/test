@@ -42,7 +42,7 @@ jobs:
 
     steps:
       - name: Run job for matrix item
-        run: echo "Running for page ${{ matrix.name }}"
+        run: echo "Running for page ${{ matrix }}"
 
   deploy:
     runs-on: ubuntu-latest
