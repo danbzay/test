@@ -45,7 +45,10 @@ jobs:
       - name: Run job for matrix item
         run: |
           echo "Running for page ${{ matrix }}";
-          echo 'matrix: ${{ toJson(matrix) }}';
+          touch publish/${{ (matrix.page.name) }};
+          git pull;
+          git add publish;
+          git push;
 
   deploy:
     runs-on: ubuntu-latest
