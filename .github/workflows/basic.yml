@@ -3,7 +3,10 @@ name: Test
 
 on:
   push:
-    branches: [ "main" ]  
+    branches: 
+      - main  
+    paths-ignore: 
+      - publish
     
 jobs:
   configure:
@@ -52,6 +55,9 @@ jobs:
           echo "Running for page ${{ matrix }}";
           touch publish/${{ (matrix.page.name) }};
           ls -R
+          git config --global user.name 'danbzay'
+          git config --global user.email 'danbzay@gmail.com'
+          git remote set-url origin https://x-access-token:${{ secrets.PAT_11 }}@github.com/${{ github.repository }}
           git pull;
           git add ./publish;
           git commit -m 'automatic saving page for future';
