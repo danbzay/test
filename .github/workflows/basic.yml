@@ -51,8 +51,9 @@ jobs:
         run: |
           echo "Running for page ${{ matrix }}";
           touch publish/${{ (matrix.page.name) }};
+          ls -R
           git pull;
-          git add publish;
+          git add ./publish;
           git push;
 
   deploy:
