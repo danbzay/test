@@ -54,6 +54,7 @@ jobs:
           ls -R
           git pull;
           git add ./publish;
+          git commit -m 'automatic saving page for future';
           git push;
 
   deploy:
